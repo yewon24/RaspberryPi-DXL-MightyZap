@@ -43,7 +43,7 @@ int main ()
 
   MightyZapSetup (4,HIGH) ;
 
-  if ((fd= MightyZap ("/dev/ttyAMA0", 57600 )) < 0)
+  if ((fd= OpenMightyZap ("/dev/ttyAMA0", 57600 )) < 0)
   {
     fprintf (stderr, "Unable to open serial device: %s\n", strerror (errno)) ;
     return 1 ;

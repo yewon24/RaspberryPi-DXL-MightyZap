@@ -225,7 +225,7 @@ int txPacket_dxl(int bID, int bInstruction, int bParameterLength){
         mTxBuffer[1] = 0xff;
         mTxBuffer[2] = 0xfd; 
         mTxBuffer[3] = 0x00;  
-        mTxBuffer[4] = dxl_id; 
+        mTxBuffer[4] = 0x01; 
         mTxBuffer[5] = 0x06;
         mTxBuffer[6] = 0x00;
         mTxBuffer[7] = 0x03;
