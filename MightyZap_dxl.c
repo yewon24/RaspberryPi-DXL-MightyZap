@@ -215,11 +215,9 @@ int getError( int errbit ){
 	return 0;
 }
 
-int txPacket(int bID, int bInstruction, int bParameterLength){
+int txPacket_dxl(int bID, int bInstruction, int bParameterLength){
 
-    int bCount,bCheckSum,bPacketLength;
-	
-	//int bCount,bCheckSum,bPacketLength;
+	printf("here in MightyZap_dxl.c txPacket_dxl()!\n");
 
     int offsetParamIndex;
    
@@ -227,7 +225,7 @@ int txPacket(int bID, int bInstruction, int bParameterLength){
         mTxBuffer[1] = 0xff;
         mTxBuffer[2] = 0xfd; 
         mTxBuffer[3] = 0x00;  
-        mTxBuffer[4] = 0x01; 
+        mTxBuffer[4] = dxl_id; 
         mTxBuffer[5] = 0x06;
         mTxBuffer[6] = 0x00;
         mTxBuffer[7] = 0x03;
@@ -259,7 +257,7 @@ int txPacket(int bID, int bInstruction, int bParameterLength){
 	
     char tempdata[bPacketLength];
 */
- irpTxEnable(); // this define is declared in irp.h
+//  irpTxEnable(); // this define is declared in irp.h
     for(bCount = 0; bCount < bPacketLength; bCount++)
     {
 	serialPutchar(fd,mTxBuffer[bCount]);
@@ -434,7 +432,7 @@ int txRxPacket(int bID, int bInst, int bTxParaLen){
 		}
 		
 		/**************************************   Transfer packet  ***************************************************/
-		bTxLen = txPacket(bID, bInst, bTxParaLen);
+		// bTxLen = txPacket(bID, bInst, bTxParaLen);
 		
 		if (bTxLen == (bTxParaLen+4+3))	mIRPtxrxStatus = (1<<COMM_TXSUCCESS); //+4+2
 				
@@ -573,7 +571,7 @@ int fast_txRxPacket(int bID, int bInst, int bTxParaLen){
 	}
 	
 	/**************************************   Transfer packet  ***************************************************/
-	bTxLen = txPacket(bID, bInst, bTxParaLen);
+	// bTxLen = txPacket(bID, bInst, bTxParaLen);
 	
 	if (bTxLen == (bTxParaLen+4+3))	mIRPtxrxStatus = (1<<COMM_TXSUCCESS); //+4+2
 					
